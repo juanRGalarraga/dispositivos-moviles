@@ -1,6 +1,8 @@
 package com.example.myapp
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract.Colors
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +14,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -19,8 +22,9 @@ import androidx.core.view.WindowInsetsCompat
 class DisplayActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val extra: String = intent.getStringExtra(EXTRA_TEXT).toString()
         setContent{
-            ShowText()
+            ShowText(extra)
         }
     }
 
@@ -32,7 +36,8 @@ class DisplayActivity : AppCompatActivity() {
 }
 
 @Composable
-fun ShowText(){
+fun ShowText(text: String){
+
     Column (
         modifier = Modifier
             .fillMaxSize()
@@ -40,6 +45,10 @@ fun ShowText(){
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        Text(text = "")
+
+        Text(
+            text = text,
+            color = Color.White
+        )
     }
 }
